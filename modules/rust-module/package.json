@@ -1,0 +1,14 @@
+{
+  "name": "react-native-rust-module",
+  "version": "0.0.0",
+  "description": "-",
+  "main": "src/index",
+  "author": " <> ()",
+  "license": "UNLICENSED",
+  "homepage": "#readme",
+  "create-react-native-library": {
+    "type": "module-legacy",
+    "languages": "kotlin-swift",
+    "version": "0.41.0"
+  }
+}
