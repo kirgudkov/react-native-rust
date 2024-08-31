@@ -14,12 +14,25 @@ Pod::Spec.new do |s|
   s.platforms    = { :ios => min_ios_version_supported }
   s.source       = { :git => ".git", :tag => "#{s.version}" }
 
-  s.source_files = "ios/**/*.{h,m,mm,swift}"
+  s.source_files = "ios/**/*.{h,m,mm}", "cpp/**/*.{hpp,cpp,c,h}"
 
   # Use install_modules_dependencies helper to install the dependencies if React Native version >=0.71.0.
   # See https://github.com/facebook/react-native/blob/febf6b7f33fdb4904669f99d795eba4c0f95d7bf/scripts/cocoapods/new_architecture.rb#L79.
   if respond_to?(:install_modules_dependencies, true)
     install_modules_dependencies(s)
+
+    # Rust library linking
+    s.vendored_libraries        = "rust/target/universal/librust.a"
+    s.header_mappings_dir       = "rust/target/universal/"
+    s.preserve_paths            = "rust/target/universal/**/*.h"
+    s.pod_target_xcconfig       = { "HEADER_SEARCH_PATHS" => '"$(PODS_TARGET_SRCROOT)/rust/target/universal"' }
+
+    # This one will run on every xcode build and compile the Rust library
+    s.script_phase              = {
+        :name => "Compile Rust Library",
+        :script => "${PODS_TARGET_SRCROOT}/rust/build.sh",
+        :execution_position => :before_compile
+    }
   else
     s.dependency "React-Core"
 

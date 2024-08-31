@@ -1,23 +1,77 @@
-import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {multiply} from 'react-native-rust-module';
+import React from "react";
+import { StyleSheet, Text, View, Image, SafeAreaView } from "react-native";
+import RustModule from "react-native-rust-module";
 
-function App(): React.JSX.Element {
-  const [result, setResult] = React.useState<number | null>(null);
+function App() {
+	const [result, setResult] = React.useState<string>("");
 
-  React.useEffect(() => {
-    multiply(2, 3).then(setResult);
-  }, []);
+	const onPress = () => {
+		const a = Math.floor(Math.random() * 100);
+		const b = Math.floor(Math.random() * 100);
 
-  return (
-    <View
-      style={[
-        StyleSheet.absoluteFill,
-        {alignItems: 'center', justifyContent: 'center'},
-      ]}>
-      <Text>{result}</Text>
-    </View>
-  );
+		setResult(`${a} * ${b} = ${RustModule.multiply(a, b)}`);
+	};
+
+	return (
+		<SafeAreaView style={styles.safeAreaView}>
+			<View style={styles.container}>
+				<Image
+					style={styles.image}
+					source={require("./rust.png")}
+				/>
+				<Text style={[styles.text, styles.hello]}>
+					{RustModule.sayHello()}
+				</Text>
+
+				<Text style={[styles.text, styles.description]}>
+					<Text
+						onPress={onPress}
+						style={[styles.text, styles.link]}
+					>
+						Press here
+					</Text>
+					{" to ask Rust to synchronously multiply two random numbers"}
+				</Text>
+
+				<Text style={styles.text}>
+					{result}
+				</Text>
+			</View>
+		</SafeAreaView>
+	);
 }
+
+const styles = StyleSheet.create({
+	safeAreaView: {
+		flex: 1,
+		backgroundColor: "rgb(125,122,255)"
+	},
+	container: {
+		flex: 1,
+		alignItems: "center",
+		justifyContent: "center",
+		paddingHorizontal: 18
+	},
+	text: {
+		fontSize: 18,
+		color: "#ffffff",
+		textAlign: "center"
+	},
+	image: {
+		height: 200,
+		resizeMode: "contain"
+	},
+	description: {
+		marginVertical: 16
+	},
+	hello: {
+		fontSize: 32,
+		fontWeight: "bold",
+		marginBottom: 16
+	},
+	link: {
+		textDecorationLine: "underline"
+	}
+});
 
 export default App;

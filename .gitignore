@@ -24,8 +24,7 @@ DerivedData
 
 # Android/IntelliJ
 #
-build/
-.idea
+**/.idea
 .gradle
 local.properties
 *.iml
@@ -33,6 +32,9 @@ local.properties
 .cxx/
 *.keystore
 !debug.keystore
+
+# Rust
+target/
 
 # node.js
 #

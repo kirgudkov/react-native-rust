@@ -1,14 +1,32 @@
-#import <React/RCTBridgeModule.h>
+#import "RustModule.h"
 
-@interface RCT_EXTERN_MODULE(RustModule, NSObject)
+#import <React/RCTBridge+Private.h>
+#import <React/RCTUtils.h>
 
-RCT_EXTERN_METHOD(multiply:(float)a withB:(float)b
-                 withResolver:(RCTPromiseResolveBlock)resolve
-                 withRejecter:(RCTPromiseRejectBlock)reject)
+@implementation RustModule
 
-+ (BOOL)requiresMainQueueSetup
+@synthesize bridge = _bridge;
+@synthesize methodQueue = _methodQueue;
+
+RCT_EXPORT_MODULE()
+
++ (BOOL)requiresMainQueueSetup {
+  return YES;
+}
+
+- (void)setBridge:(RCTBridge *)bridge
 {
-  return NO;
+  _bridge = bridge;
+  _setBridgeOnMainQueue = RCTIsMainQueue();
+
+  RCTCxxBridge *cxxBridge = (RCTCxxBridge *)self.bridge;
+  if (!cxxBridge.runtime) {
+	return;
+  }
+
+  [bridge dispatchBlock:^{
+	rustmodule::install(*(facebook::jsi::Runtime *)cxxBridge.runtime);
+  } queue:RCTJSThread];
 }
 
 @end

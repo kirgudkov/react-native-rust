@@ -1237,7 +1237,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-rust-module (0.0.0):
+  - react-native-rust-module (0.0.1):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1757,7 +1757,7 @@ SPEC CHECKSUMS:
   React-logger: 8db32983d75dc2ad54f278f344ccb9b256e694fc
   React-Mapbuffer: 1c08607305558666fd16678b85ef135e455d5c96
   React-microtasksnativemodule: 87b8de96f937faefece8afd2cb3a518321b2ef99
-  react-native-rust-module: d1b647d09282d8b02a44b537741cd34ff0aa5c2e
+  react-native-rust-module: 3f5d5a9a091d63554a0d559d2da88c654c776fe6
   React-nativeconfig: 57781b79e11d5af7573e6f77cbf1143b71802a6d
   React-NativeModulesApple: 7ff2e2cfb2e5fa5bdedcecf28ce37e696c6ef1e1
   React-perflogger: 8a360ccf603de6ddbe9ff8f54383146d26e6c936
