@@ -23,14 +23,14 @@ Pod::Spec.new do |s|
 
     # Rust library linking
     s.vendored_libraries        = "rust/target/universal/librust.a"
-    s.header_mappings_dir       = "rust/target/universal/"
-    s.preserve_paths            = "rust/target/universal/**/*.h"
-    s.pod_target_xcconfig       = { "HEADER_SEARCH_PATHS" => '"$(PODS_TARGET_SRCROOT)/rust/target/universal"' }
+    s.header_mappings_dir       = "rust/target/include/"
+    s.preserve_paths            = "rust/target/include/**/*.h"
+    s.pod_target_xcconfig       = { "HEADER_SEARCH_PATHS" => '"$(PODS_TARGET_SRCROOT)/rust/target/include"' }
 
     # This one will run on every xcode build and compile the Rust library
     s.script_phase              = {
         :name => "Compile Rust Library",
-        :script => "${PODS_TARGET_SRCROOT}/rust/build.sh",
+        :script => "${PODS_TARGET_SRCROOT}/rust/build-ios.sh",
         :execution_position => :before_compile
     }
   else

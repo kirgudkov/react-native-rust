@@ -1,6 +1,8 @@
 import React from "react";
-import { StyleSheet, Text, View, Image, SafeAreaView } from "react-native";
+import { StyleSheet, Text, View, Image, SafeAreaView, StatusBar } from "react-native";
 import RustModule from "react-native-rust-module";
+
+StatusBar.setBackgroundColor("rgb(125,122,255)");
 
 function App() {
 	const [result, setResult] = React.useState<string>("");

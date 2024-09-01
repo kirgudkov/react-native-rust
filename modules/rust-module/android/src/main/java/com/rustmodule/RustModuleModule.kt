@@ -3,23 +3,35 @@ package com.rustmodule
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule
 import com.facebook.react.bridge.ReactMethod
-import com.facebook.react.bridge.Promise
+import com.facebook.react.module.annotations.ReactModule
 
-class RustModuleModule(reactContext: ReactApplicationContext) :
-  ReactContextBaseJavaModule(reactContext) {
+@ReactModule(name = RustModuleModule.NAME)
+class RustModuleModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
+
+  private external fun initialize(jsiPtr: Long, docDir: String)
 
   override fun getName(): String {
     return NAME
   }
 
-  // Example method
-  // See https://reactnative.dev/docs/native-modules-android
-  @ReactMethod
-  fun multiply(a: Double, b: Double, promise: Promise) {
-    promise.resolve(a * b)
+  @ReactMethod(isBlockingSynchronousMethod = true)
+  fun install(): Boolean {
+    return try {
+      initialize(
+        reactApplicationContext.javaScriptContextHolder!!.get(),
+        reactApplicationContext.filesDir.absolutePath
+      )
+      true
+    } catch (exception: Exception) {
+      false
+    }
   }
 
   companion object {
+    init {
+      System.loadLibrary("react-native-rust-module")
+    }
+
     const val NAME = "RustModule"
   }
 }

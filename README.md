@@ -1,1 +1,2 @@
-<img width="300" alt="Screenshot 2024-09-01 at 01 35 29" src="https://github.com/user-attachments/assets/51947085-9a96-4eba-92d0-2308bb92f541">
+| <img width="300" alt="iOS" src="https://github.com/user-attachments/assets/51947085-9a96-4eba-92d0-2308bb92f541"> | <img width="220" alt="Android" src="https://github.com/user-attachments/assets/c42b4f97-11b6-4d16-81b1-3c44b60a7184"> |
+|-------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|
