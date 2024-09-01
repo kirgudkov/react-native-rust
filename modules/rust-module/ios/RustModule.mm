@@ -25,7 +25,7 @@ RCT_EXPORT_MODULE()
   }
 
   [bridge dispatchBlock:^{
-	rust_module::install(*(facebook::jsi::Runtime *)cxxBridge.runtime);
+	install(*(facebook::jsi::Runtime *)cxxBridge.runtime);
   } queue:RCTJSThread];
 }
 

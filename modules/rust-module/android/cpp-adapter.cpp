@@ -7,6 +7,6 @@ Java_com_rustmodule_RustModuleModule_initialize(JNIEnv *env, jobject thiz, jlong
     auto runtime = reinterpret_cast<facebook::jsi::Runtime *>(jsi);
 
     if (runtime) {
-        rust_module::install(*runtime);
+        install(*runtime);
     }
 }

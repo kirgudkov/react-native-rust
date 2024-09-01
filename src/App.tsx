@@ -1,8 +1,10 @@
 import React from "react";
-import { StyleSheet, Text, View, Image, SafeAreaView, StatusBar } from "react-native";
+import { StyleSheet, Text, View, Image, SafeAreaView, StatusBar, Platform } from "react-native";
 import RustModule from "react-native-rust-module";
 
-StatusBar.setBackgroundColor("rgb(125,122,255)");
+if (Platform.OS === "android") {
+	StatusBar.setBackgroundColor("rgb(125,122,255)");
+}
 
 function App() {
 	const [result, setResult] = React.useState<string>("");
@@ -19,7 +21,7 @@ function App() {
 			<View style={styles.container}>
 				<Image
 					style={styles.image}
-					source={require("./rust.png")}
+					source={{ uri: "ferris" }}
 				/>
 				<Text style={[styles.text, styles.hello]}>
 					{RustModule.sayHello()}
@@ -60,7 +62,7 @@ const styles = StyleSheet.create({
 		textAlign: "center"
 	},
 	image: {
-		height: 200,
+		height: 200, width: 300,
 		resizeMode: "contain"
 	},
 	description: {

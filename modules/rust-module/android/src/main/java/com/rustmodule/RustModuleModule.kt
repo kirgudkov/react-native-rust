@@ -7,7 +7,6 @@ import com.facebook.react.module.annotations.ReactModule
 
 @ReactModule(name = RustModuleModule.NAME)
 class RustModuleModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
-
   private external fun initialize(jsiPtr: Long, docDir: String)
 
   override fun getName(): String {

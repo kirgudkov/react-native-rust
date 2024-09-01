@@ -23,5 +23,3 @@ for TARGET in "${TARGETS[@]}"; do
 done
 
 cbindgen --config cbindgen.toml -o "target/include/librust.h"
-
-echo "✅ Android Rust library built successfully"
