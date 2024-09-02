@@ -10,6 +10,9 @@ const RustModule = {
 	},
 	sayHello(): string {
 		return (global as any).sayHello();
+	},
+	generateQR(data: string): string {
+		return (global as any).generateQR(data);
 	}
 };
 

@@ -10,7 +10,8 @@
   "dependencies": {
     "react": "18.3.1",
     "react-native": "0.75.2",
-    "react-native-rust-module": "link:./modules/rust-module"
+    "react-native-rust-module": "link:./modules/rust-module",
+    "react-native-svg": "15.6.0"
   },
   "devDependencies": {
     "@babel/core": "7.25.2",

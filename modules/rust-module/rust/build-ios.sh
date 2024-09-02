@@ -1,5 +1,4 @@
 #!/bin/bash
-
 set -e
 
 export PATH="$HOME/.cargo/bin:/usr/bin:/usr/local/bin:$PATH"
@@ -8,7 +7,9 @@ cd "$(dirname "$0")"
 
 OUTPUT_DIR="target/universal"
 
-mkdir -p $OUTPUT_DIR
+if [ ! -d $OUTPUT_DIR ]; then
+  mkdir -p $OUTPUT_DIR
+fi
 
 cargo build --target aarch64-apple-ios-sim --release
 
