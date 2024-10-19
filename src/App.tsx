@@ -18,7 +18,7 @@ function App() {
 
 		setQR({
 			svg: RustModule.generateQR(product),
-			text: `The product of ${a} and ${b} is encoded in the QR code above using Rust!`
+			text: `The product of ${a} and ${b} is encoded in the QR code above using Rust!`,
 		});
 	};
 
@@ -35,7 +35,7 @@ function App() {
 					{RustModule.sayHello()}
 				</Text>
 
-				<View style={styles.svg}>
+				<View style={styles.qr}>
 					{qr ? <SvgXml xml={qr.svg} /> : null}
 				</View>
 				<Text style={styles.text}>
@@ -47,7 +47,7 @@ function App() {
 					style={styles.button}
 				>
 					<Text style={[styles.text, styles.buttonText]}>
-						Generate random product
+						Generate random QR code
 					</Text>
 				</TouchableOpacity>
 			</View>
@@ -62,41 +62,36 @@ type QR = {
 
 const ACCENT = "rgb(248,99,125)";
 const PRIMARY = "rgb(125,122,255)";
-const SECONDARY = "rgb(151,150,244)";
 
 const styles = StyleSheet.create({
 	sav: {
 		flex: 1,
-		backgroundColor: PRIMARY
+		backgroundColor: PRIMARY,
 	},
 	container: {
-		flex: 1, top: -30,
+		flex: 1,
 		alignItems: "center",
-		justifyContent: "center",
-		paddingHorizontal: 18
+		padding: 20,
 	},
 	ferris: {
-		width: 350,
+		width: 300,
 		aspectRatio: 2,
-		resizeMode: "contain"
+		resizeMode: "contain",
 	},
 	header: {
-		fontSize: 36,
-		fontWeight: "bold"
+		fontSize: 30,
+		fontWeight: "bold",
 	},
 	text: {
 		fontSize: 16,
 		color: "#ffffff",
-		textAlign: "center"
+		textAlign: "center",
 	},
-	svg: {
-		marginVertical: 18,
-		borderColor: SECONDARY,
-		borderWidth: 2,
+	qr: {
+		width: 300,
+		aspectRatio: 1,
 		borderCurve: "continuous",
 		borderRadius: 20,
-		width: 300,
-		aspectRatio: 1
 	},
 	button: {
 		marginTop: 18,
@@ -104,11 +99,11 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 24,
 		backgroundColor: ACCENT,
 		borderRadius: 12,
-		borderCurve: "continuous"
+		borderCurve: "continuous",
 	},
 	buttonText: {
-		fontWeight: "bold"
-	}
+		fontWeight: "bold",
+	},
 });
 
 export default App;
